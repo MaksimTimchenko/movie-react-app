@@ -3,15 +3,14 @@ import { useEffect, useState } from 'react'
 
 import apiConfig from '../../../services/apiConfig'
 
-const MovieTrailer = ({id}) => {
+const MovieTrailer = ({id, type}) => {
     const [trailer, setTrailer] = useState([])
    
 
     useEffect(() => {
         const getTrailer = async () => {
-            const response = await fetch(`${apiConfig._baseUrl}movie/${id}/videos?api_key=${apiConfig._apiKey}&language=en-US`);
+            const response = await fetch(`${apiConfig._baseUrl}${type}/${id}/videos?api_key=${apiConfig._apiKey}&language=en-US`);
             const data = await response.json();
-
             return setTrailer(data.results[0])
         };
         getTrailer()

@@ -5,6 +5,7 @@ import apiConfig from '../services/apiConfig'
 const initialState = {
     popularMoviesList: [],
     upcomingMovieList: [],
+    popularTvList: [],
     MovieDescription: [],
     status: null,
     error: null
@@ -16,6 +17,25 @@ export const fetchPopularMoviesList = createAsyncThunk(
     async function(page = 1, {rejectWithValue}) {
         try {
             const response = await fetch(`${apiConfig._baseUrl}movie/popular?api_key=${apiConfig._apiKey}&language=en-US&page=${page}`);
+
+            if (!response.ok) {
+                throw new Error('Server Error!');
+            }
+            
+            const data = await response.json();
+            return data ;
+        } catch(error) {
+            return rejectWithValue(error.message)
+        }
+       
+    }
+);
+
+export const fetchpopularTvList = createAsyncThunk(
+    'movieList/fetchpopularTvList',
+    async function(page = 1, {rejectWithValue}) {
+        try {
+            const response = await fetch(`${apiConfig._baseUrl}tv/top_rated?api_key=${apiConfig._apiKey}&language=en-US&page=${page}`);
 
             if (!response.ok) {
                 throw new Error('Server Error!');
@@ -55,11 +75,34 @@ export const fetchUpcomingMovieList = createAsyncThunk(
 
 export const fetchTheMovie = createAsyncThunk(
     'movieList/fetchTheMovie',
-    async function(movieId,{rejectWithValue}) {
-
+    async function(params,{rejectWithValue}) {
+        console.log(params)
         try {
 
-            const response = await fetch(`${apiConfig._baseUrl}movie/${movieId}?api_key=${apiConfig._apiKey}&language=en-US`);
+            const response = await fetch(`${apiConfig._baseUrl}${params.type}/${params.id}?api_key=${apiConfig._apiKey}&language=en-US`);
+
+            if (!response.ok) {
+                throw new Error('Server Error!');
+            }
+
+            const data = await response.json();
+    
+            return data
+            
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+
+    }
+)
+
+export const fetchTheTv = createAsyncThunk(
+    'movieList/fetchTheTv',
+    async function(movieId,{rejectWithValue}) {
+       
+        try {
+
+            const response = await fetch(`${apiConfig._baseUrl}tv/${movieId}?api_key=${apiConfig._apiKey}&language=en-US`);
 
             if (!response.ok) {
                 throw new Error('Server Error!');
@@ -126,6 +169,20 @@ export const moviesSlice = createSlice({
             state.error = action.payload
         },
 
+        //get Tv list
+
+        [fetchpopularTvList.pending] : (state) => {
+            state.status = 'loading';
+            state.error = null;
+        },
+        [fetchpopularTvList.fulfilled] : (state, action) => {
+            state.status = 'resolved';
+            state.popularTvList = action.payload.results;
+        },
+        [fetchpopularTvList.rejected] : (state, action) => {
+            state.status = 'rejected'
+            state.error = action.payload
+        },
 
         // Get Movie description
 
@@ -141,6 +198,22 @@ export const moviesSlice = createSlice({
             state.status = 'rejected'
             state.error = action.payload
         },
+
+        // Get Tv description
+        [fetchTheTv.pending] : (state) => {
+            state.status = 'loading';
+            state.error = null;
+        },
+        [fetchTheTv.fulfilled] : (state, action) => {
+            state.status = 'resolved';
+            state.MovieDescription = action.payload;
+        },
+        [fetchTheTv.rejected] : (state, action) => {
+            state.status = 'rejected'
+            state.error = action.payload
+        },
+
+        
 
 
     }

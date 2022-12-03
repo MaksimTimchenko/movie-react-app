@@ -2,20 +2,20 @@ import React, {useEffect, useState} from 'react'
 import apiConfig from '../../../services/apiConfig';
 import noPhoto from '../../../assets/noPhoto.jpg'
 
-const CastList = ({id}) => {
+const CastList = ({id, type}) => {
     const [castList, setCastList] = useState([]);
-
+    console.log(id);
     useEffect(() => {
         const getCredits = async () => {
 
-            const response = await fetch(`${apiConfig._baseUrl}movie/${id}/credits?api_key=${apiConfig._apiKey}&language=en-US
+            const response = await fetch(`${apiConfig._baseUrl}${type}/${id}/credits?api_key=${apiConfig._apiKey}&language=en-US
             `);
 
             const data = await response.json()
             setCastList(data.cast.slice(0, 5));
     }
     getCredits()
-}, [id])
+}, [id, type])
     
   return (
     <div className='flex gap-4'>
