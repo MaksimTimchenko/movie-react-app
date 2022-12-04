@@ -31,12 +31,11 @@ const CategoryMovieList = ({title, fetch, category, type}) => {
             movieList = useSelector(state => state.movies.popularTvList);
     }
 
-    
   return (
     <div className='container mx-auto mt-4 mb-8 '>
         <div className='flex justify-between pb-6'>
             <h3 className='font-bold'>{title}</h3>
-            {/* изменить путь */}
+
             <Link to={`/${category}`}><Button text={'View More'}/></Link>                
         </div>
         <Swiper
@@ -67,8 +66,8 @@ const View = ({item, type}) => {
     return (
         <>    
             <Link to={`/${type}/${movie.id}`} className='flex gap-1'>
-                <div >
-                    <img src={poster} alt={movie.title} className='w-[200px] rounded-2xl' />
+                <div className='' >
+                    <img src={poster} alt={movie.title} className='w-[300px] lg:w-[200px] rounded-2xl' />
                     <span className='text-sm'>
                         {movie.title || movie.name}
                     </span>

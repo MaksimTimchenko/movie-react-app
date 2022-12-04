@@ -21,10 +21,10 @@ const MovieDescription = () => {
     const movieDetails = useSelector(state => state.movies.MovieDescription)
     const {status, error} = useSelector(state => state.movies)
     const pathName = useLocation()
-  const params = {
+    const params = {
     id: movieId,
     type: type
-  }
+    }
 
 
 
@@ -76,7 +76,7 @@ const Info = ({apiConfig, movieDetails, type, movieId}) => {
           </div>
           
           <p className='text-sm mt-7'>{movieDetails.overview || 'thre is no description yet'}</p>
-          <div className='mt-10'>
+          <div className=' mt-10'>
             <span className='text-lg font-bold '>Casts</span>
               <CastList id={movieDetails.id} type={type}/>
           </div>

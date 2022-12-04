@@ -33,22 +33,28 @@ const MoviesList = () => {
     useEffect(() => {
         request(true)
         setIsLoading(true)
+        setMoviesList([])
     },[])
 
+    
+
+    console.log('lict',moviesList)
+
     const request = (loading) => {
+        
         loading ? setNewItemLoading(true) : setNewItemLoading(false)
         _getMovies(category, page)
         .then(initial)
         
+        
     }
     
   const initial = (newMovies) => {
-    
+        
         setNewItemLoading(false)
-        setMoviesList([...moviesList, ...newMovies]) 
+        setMoviesList([...moviesList, ...newMovies])
         setIsLoading(false) 
         setPage(page + 1)
-        
   }
     
   console.log(moviesList);

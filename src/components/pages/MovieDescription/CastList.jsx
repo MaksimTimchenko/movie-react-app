@@ -18,7 +18,7 @@ const CastList = ({id, type}) => {
 }, [id, type])
     
   return (
-    <div className='flex gap-4'>
+    <div className='flex flex-wrap lg:flex-nowrap gap-4'>
         
         {
             castList?.map((item) => (

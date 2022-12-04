@@ -12,7 +12,7 @@ module.exports = {
         'name-color': '#E6E6E6',
       },
       backgroundImage: {
-        'hero-pattern': "url('./assets/noPhoto.jpg')",
+        'hero-pattern': "url('./assets/erroww.svg')",
         'footer-texture': "url('/img/footer-texture.png')",
         'bg-shadow': "linear-gradient(to top, #0f0f0f, rgba(0, 0, 0, 1))"
       }

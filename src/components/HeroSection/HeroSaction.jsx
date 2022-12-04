@@ -57,13 +57,31 @@ const HeroSlide = props => {
   const poster = apiConfig.mainImage(item.poster_path ? item.poster_path : null) 
 
   return(
-    <div style={{'backgroundImage':`url(${background})`}} className={ `bg-cover bg-no-repeat bg-center w-full h-screen relative
-       after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[rgba(0,0,0,0.5)] 
+    <div style={{'backgroundImage':`url(${background})`}}
+     className={ `bg-cover
+      bg-no-repeat
+      bg-center
+      w-full
+      h-screen
+      relative
+      after:content-['']
+      after:absolute
+      after:top-0
+      after:left-0
+      after:w-full
+      after:h-full
+      after:bg-[rgba(0,0,0,0.5)] 
    `}>
-         <div className=" container mx-auto flex justify-around pt-[100px]  ">
+         <div className="container
+          mx-auto
+          flex
+          justify-around
+          pt-[200px] 
+          lg:pt-[100px]">
+
             <div className="w-[55%] pt-10 z-50">
                 <h2 className="font-bold text-7xl	 title">{item.original_title}</h2>
-                <p className="text-sm mt-5 w-[500px] overview">{item.overview}</p>
+                <p className="text-sm mt-5 w-[300px] lg:w-[500px] overview">{item.overview}</p>
 
                 <div className="mt-6 btn">
                   <Link to={`/movie/${item.id}`}>
@@ -71,7 +89,7 @@ const HeroSlide = props => {
                   </Link>
                 </div>
             </div>
-            <div className="ml-12 mb-9 hero_poster" >
+            <div className=" ml-12 mb-9 hero_poster" >
               <img src={poster} alt={item.original_title} className="w-[300px] rounded-lg " />
             </div>
         </div>       
