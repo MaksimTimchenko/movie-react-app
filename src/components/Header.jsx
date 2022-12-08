@@ -21,7 +21,7 @@ const Header = () => {
                 <NavLink  end style={({ isActive }) => ({ borderBottom: isActive ? '2px solid yellow' : 'none' })} to={'/'} className="hover:border-b-2  border-gold cursor-pointer">Home</NavLink>
                 <NavLink  end style={({ isActive }) => ({ borderBottom: isActive ? '2px solid yellow' : 'none' })} to={'/top_rated'} className="hover:border-b-2  border-gold  cursor-pointer">Movies</NavLink>
                 <NavLink  end style={({ isActive }) => ({ borderBottom: isActive ? '2px solid yellow' : 'none' })} to={`/tv`} className="hover:border-b-2  border-gold cursor-pointer">TV Show</NavLink>
-                <li className="hover:border-b-2  border-gold cursor-pointer">Video</li>
+                <NavLink end style={({ isActive }) => ({ borderBottom: isActive ? '2px solid yellow' : 'none' })} to={`/search`} className="hover:border-b-2  border-gold cursor-pointer">Video</NavLink>
                 <NavLink end style={({ isActive }) => ({ borderBottom: isActive ? '2px solid yellow' : 'none' })} to={`/FAQ`} className="hover:border-b-2  border-gold cursor-pointer">FAQ</NavLink>
             </ul>
         </div>
